@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['defect']
+
+roboflow:
+  workspace: space-tzqvi
+  project: ki_prod-wd5sv
+  version: 3
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/space-tzqvi/ki_prod-wd5sv/dataset/3
