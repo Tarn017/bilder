@@ -1,0 +1,28 @@
+{
+  "config": {
+    "backbone": "resnet18",
+    "input_size": 518,
+    "grayscale": false,
+    "clahe": false,
+    "aug_n": 3,
+    "coreset_ratio": 0.1,
+    "max_bank": 30000,
+    "use_extras": true,
+    "seed": 42,
+    "device": "cpu"
+  },
+  "metrics": {
+    "n_images": 19,
+    "n_defect_images": 11,
+    "image_auroc": 0.5,
+    "image_best_f1": 0.7333333333333334,
+    "best_f1_threshold_note": "optimistisch (auf OOF-Scores gewaehlt)",
+    "confusion_at_best_f1": {
+      "tp": 11,
+      "fp": 8,
+      "fn": 0,
+      "tn": 0
+    },
+    "pixel_auroc": 0.736466158096605
+  }
+}
