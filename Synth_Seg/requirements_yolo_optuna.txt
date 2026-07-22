@@ -1,0 +1,6 @@
+ultralytics>=8.4.92,<8.5
+optuna>=4.0,<5
+albumentations>=2.0,<3
+opencv-python>=4.10,<6
+pyyaml>=6,<7
+numpy>=1.26,<3
