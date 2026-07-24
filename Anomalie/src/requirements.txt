@@ -1,0 +1,9 @@
+# Basis (torch/torchvision bitte passend zur CUDA-Version installieren, s. README)
+torch>=2.2
+torchvision>=0.17
+numpy
+pillow
+opencv-python
+scikit-learn
+albumentations>=1.4
+optuna>=3.6
