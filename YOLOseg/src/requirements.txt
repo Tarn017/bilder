@@ -1,0 +1,6 @@
+ultralytics>=8.3
+torch>=2.2
+torchvision>=0.17
+numpy
+opencv-python
+albumentations>=1.4
