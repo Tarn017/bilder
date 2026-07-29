@@ -2,13 +2,16 @@
 
 Datenquellen
 ------------
-  defekte_daten/all_19/base_images   19 echte Aufnahmen, 5472x3648
-  defekte_daten/all_19/masks         13 Defektmasken zu 11 dieser Bilder
+Alle Pfade liegen unterhalb von YOLOseg/data - der Ordner YOLOseg ist damit
+eigenstaendig und laesst sich als Ganzes auf einen anderen Rechner kopieren.
+
+  data/all_19/base_images            19 echte Aufnahmen, 5472x3648
+  data/all_19/masks                  13 Defektmasken zu 11 dieser Bilder
   data/augments/{images,masks}       2 Offline-Augmentierungen je echtem Bild
-  defekt_synth/cropped               150 synthetische Defektbilder (freigestellt)
-  defekt_synth/masks_png             deren Defektmasken
-  defekt_synth/object_masks_png      deren Bauteilsilhouetten
-  intakt_synth/cropped               42 synthetische Gut-Bilder
+  data/defekt_synth/cropped          150 synthetische Defektbilder (freigestellt)
+  data/defekt_synth/masks_png        deren Defektmasken
+  data/defekt_synth/object_masks_png deren Bauteilsilhouetten
+  data/intakt_synth/cropped          42 synthetische Gut-Bilder
 
 Aufteilung
 ----------
@@ -39,19 +42,18 @@ import pathlib
 import cv2
 import numpy as np
 
-ROOT = pathlib.Path(__file__).resolve().parents[2]
 HERE = pathlib.Path(__file__).resolve().parents[1]
 DATA = HERE / "data"
 RESULTS = HERE / "results"
 
-REAL_IMG = ROOT / "defekte_daten" / "all_19" / "base_images"
-REAL_MASK = ROOT / "defekte_daten" / "all_19" / "masks"
+REAL_IMG = DATA / "all_19" / "base_images"
+REAL_MASK = DATA / "all_19" / "masks"
 AUG_IMG = DATA / "augments" / "images"
 AUG_MASK = DATA / "augments" / "masks"
-SYN_DEF = ROOT / "defekt_synth" / "cropped"
-SYN_DEF_MASK = ROOT / "defekt_synth" / "masks_png"
-SYN_DEF_OBJ = ROOT / "defekt_synth" / "object_masks_png"
-SYN_OK = ROOT / "intakt_synth" / "cropped"
+SYN_DEF = DATA / "defekt_synth" / "cropped"
+SYN_DEF_MASK = DATA / "defekt_synth" / "masks_png"
+SYN_DEF_OBJ = DATA / "defekt_synth" / "object_masks_png"
+SYN_OK = DATA / "intakt_synth" / "cropped"
 POOL = DATA / "pool"
 
 POOL_SIZE = 1024          # laengste Seite in der Ablage; deckt beide imgsz ab

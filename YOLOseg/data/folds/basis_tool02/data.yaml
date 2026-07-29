@@ -1,6 +1,0 @@
-path: C:/Users/to-bi/Documents/KI Prod CC/YOLOseg/data/folds/basis_tool02
-train: train.txt
-val: val.txt
-nc: 1
-names:
-  0: defect

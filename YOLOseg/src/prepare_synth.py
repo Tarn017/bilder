@@ -1,11 +1,11 @@
 """Synthetische Defektbilder freistellen.
 
-Die 150 Bilder in defekt_synth/images haben noch den Aufnahmehintergrund
-(Werkbank, Maschinenbett). Die echten Aufnahmen in defekte_daten und die
-synthetischen Gut-Bilder in intakt_synth/cropped sind dagegen freigestellt.
-Dieses Skript entfernt den Hintergrund anhand von object_masks_png und legt
-das Ergebnis in defekt_synth/cropped ab - gleiches Format wie
-intakt_synth/cropped (1088x725, PNG, reinweisser Hintergrund).
+Die 150 Bilder in data/defekt_synth/images haben noch den Aufnahmehintergrund
+(Werkbank, Maschinenbett). Die echten Aufnahmen in data/all_19 und die
+synthetischen Gut-Bilder in data/intakt_synth/cropped sind dagegen
+freigestellt. Dieses Skript entfernt den Hintergrund anhand von
+object_masks_png und legt das Ergebnis in data/defekt_synth/cropped ab -
+gleiches Format wie data/intakt_synth/cropped (1088x725, PNG, reinweiss).
 
 Zusaetzlich entsteht results/synth_qualitaet.csv mit zwei Kennzahlen je Bild,
 die fuer die spaetere Auswahl gebraucht werden:
@@ -35,10 +35,10 @@ import pathlib
 import cv2
 import numpy as np
 
-ROOT = pathlib.Path(__file__).resolve().parents[2]
-SRC = ROOT / "defekt_synth"
+HERE = pathlib.Path(__file__).resolve().parents[1]
+SRC = HERE / "data" / "defekt_synth"
 DST = SRC / "cropped"
-RESULTS = pathlib.Path(__file__).resolve().parents[1] / "results"
+RESULTS = HERE / "results"
 BG = 255                      # reinweiss, wie in intakt_synth/cropped
 
 
@@ -49,6 +49,11 @@ def main() -> None:
 
     imgs = sorted(SRC.glob("images/*.jpg")) + sorted(SRC.glob("images/*.png"))
     if not imgs:
+        fertig = len(list(DST.glob("*.png"))) if DST.exists() else 0
+        if fertig:
+            print(f"{SRC / 'images'} fehlt, aber {DST} enthaelt bereits "
+                  f"{fertig} freigestellte Bilder - nichts zu tun.")
+            return
         raise SystemExit(f"Keine Bilder in {SRC / 'images'}")
     DST.mkdir(parents=True, exist_ok=True)
     RESULTS.mkdir(parents=True, exist_ok=True)
